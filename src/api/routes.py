@@ -8,7 +8,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 api = Blueprint('api', __name__)
 
-# SI FUNCIONA
+
 @api.route('/users', methods=['GET'])
 def get_users():
  
@@ -21,7 +21,7 @@ def get_users():
     return jsonify(userlist), 200
 
 
-# SI FUNCIONA
+
 @api.route('/users', methods=['POST'])
 def add_user():
     data = request.data
@@ -41,7 +41,7 @@ def add_user():
 
 
 
-# # SI FUNCIONA
+
 @api.route('/fav-users', methods=['POST'])
 def add_fav_user():
     id_user = request.json.get("user_id", None)
@@ -57,7 +57,8 @@ def add_fav_user():
         }
     return jsonify(response_body), 200
 
-# mostrar fav users 
+
+
 @api.route('/fav-users', methods=['GET'])
 def get_fav_users():
     fav_users = Fav_Users.query.all()
@@ -68,7 +69,7 @@ def get_fav_users():
 
 
 
-# delete fav users 
+
 @api.route('/fav-users', methods=['DELETE'])
 def delete_fav_user():
     id_fav_user = request.json.get("fav_user_id", None)
@@ -84,7 +85,6 @@ def delete_fav_user():
     return jsonify(response_body), 200
 
 
-# delete user SI funciona (solo se pueden borrar si no estan en fav añadidos, sino hay que forrar de fav primero)
 @api.route('/users', methods=['DELETE'])
 def delete_user():
     id_user = request.json.get("user_id", None)
@@ -100,7 +100,7 @@ def delete_user():
     return jsonify(response_body), 200
 
 
-# si el body email y pass son correctos da un token 
+
 @api.route('/login', methods=['POST'])
 def handle_login():
     email = request.json.get("email", None)
@@ -120,7 +120,7 @@ def handle_private():
     user = User.query.get(current_user_id)
     return jsonify({"id":user.id, "email": user.email})
 
-# ME FALTA POR TERMINAR SIGIN QUE MANDE A SU PRIVATE Y LE DE TOKEN
+
 @api.route('/signup', methods=['POST'])
 def add_user_signup():
     data = request.data
