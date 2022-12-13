@@ -9,6 +9,7 @@ ports:
     visibility: public
   - port: 5432
     onOpen: ignore
+
 tasks:
   - init: >
       (cp -n .env.example .env || true) && 
